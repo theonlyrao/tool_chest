@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ToolChest</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if Session.find_by(user_id: @user.id) %>
+  <%= link_to "Logout", logout_path, method: "delete" %>
+<% else %>
+  <%= link_to "Login", login_path %>
+<% end %>
+
+<% flash.each do |key, value| %>
+  <%= flash[key] %>
+<% end %>
+
+<p><strong>Newest tool:</strong> <%= most_recent_tool %></p>
+<p><strong>Tools created this session:</strong> <%= session[:current_tool_count] %></p>
+
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+<h1><%= @tool.name %></h1>
+
+<p>Price: $<%= @tool.price %></p>
+<p>Quantity: <%= @tool.quantity %></p>
+
+<%= link_to "Edit Tool", edit_tool_path(@tool.id) %>
+<%= link_to "Delete Tool", tool_path(@tool.id), method: :delete %>
