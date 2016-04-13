@@ -2,7 +2,7 @@
 
 <h3><%= @user.username %>'s tools</h3>
 <% @user.tools.each do |tool| %>
-  <%= link_to tool.name, tool_path(tool.id) %>
+  <%= link_to tool.name, user_tool_path(@user.id, tool.id) %>
 <% end %>
 
-<%= link_to "Create A New Tool", new_tool_path %>
+<%= link_to "Create A New Tool", new_user_tool_path(@user.id) %>

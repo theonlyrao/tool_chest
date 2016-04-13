@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root to: "users#new"
-  resources :tools
 
-  resources :users, only: [:new, :index, :create, :show]
+  resources :users, only: [:new, :index, :create, :show, :edit, :update] do
+    resources :tools
+  end
 
   get "/login" => "sessions#new"
   post "/login" => "sessions#create"

@@ -19,11 +19,12 @@ class ToolsController < ApplicationController
     session[:current_tool_count] = 0 if session[:most_recent_tool_id].nil?
     @tool = Tool.new(tool_params)
     if @tool.save
-      @tool.update_attribute :user_id, "#{session[:user_id]}"
+      user = User.find(session[:user_id])
+      @tool.update_attribute :user_id, "#{user.id}"
       flash[:notice] = "Tool successfully created"
       session[:most_recent_tool_id] = @tool.id
       session[:current_tool_count] += 1
-      redirect_to tool_path(@tool.id)
+      redirect_to user_tool_path(user.id, @tool.id)
     else
       flash[:error] = @tool.errors.full_messages.join(", ")
       render :new
@@ -31,6 +32,7 @@ class ToolsController < ApplicationController
   end
 
   def edit
+    @user = User.find(session[:user_id])
     @tool = Tool.find(params[:id])
   end
 
