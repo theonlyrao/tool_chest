@@ -17,6 +17,8 @@ class SessionsController < ApplicationController
   def destroy
     holder = Session.find_by(user_id: session[:user_id])
     holder.destroy
+    session[:most_recent_tool_id] = nil
+    session[:current_tool_count] = 0
     redirect_to login_path
   end
 

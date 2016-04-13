@@ -7,5 +7,7 @@
   <%= f.label :quantity %>
   <%= f.text_field :quantity %>
 
+  <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+
   <%= f.submit %>
 <% end %>
