@@ -21,18 +21,21 @@ class UserCanCreateToolsTest < ActionDispatch::IntegrationTest
     click_on "Create Tool"
 
     assert_equal "anvil", Tool.last.name
-    assert_equal blacksmith.id, Tool.last.id
+    assert_equal blacksmith.id, Tool.last.user_id
     assert page.has_content? "anvil"
   end
 
   test "user can see multiple tools" do
-    skip
     blacksmith = User.create(username: "blacksmith", password: "asdf")
     tongs = Tool.create(name: "tongs", price: "2", quantity: "3", user_id: blacksmith.id)
     water = Tool.create(name: "water", price: "2", quantity: "3", user_id: blacksmith.id)
 
-    visit user_path(blacksmith.id)
-    assert page.has_content?("anvil")
+    visit login_path
+    fill_in "Username", with: blacksmith.username
+    fill_in "Password", with: blacksmith.password
+    click_on "Log In To Your Account"
+
+    assert page.has_content?("tongs")
     assert page.has_content?("water")
 
     click_on "water"

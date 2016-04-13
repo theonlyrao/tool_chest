@@ -6,6 +6,7 @@ class ToolsController < ApplicationController
   end
 
   def show
+    @user = User.find(session[:user_id])
     @tool = Tool.find(params[:id])
   end
 
@@ -18,6 +19,7 @@ class ToolsController < ApplicationController
     session[:current_tool_count] = 0 if session[:most_recent_tool_id].nil?
     @tool = Tool.new(tool_params)
     if @tool.save
+      @tool.update_attribute :user_id, "#{session[:user_id]}"
       flash[:notice] = "Tool successfully created"
       session[:most_recent_tool_id] = @tool.id
       session[:current_tool_count] += 1

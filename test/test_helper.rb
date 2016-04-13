@@ -12,4 +12,8 @@ end
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
+
+  def setup
+    reset_session!
+  end
 end

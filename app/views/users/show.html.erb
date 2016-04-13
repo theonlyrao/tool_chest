@@ -1,3 +1,8 @@
 <h1><%= @user.username %> show page</h1>
 
+<h3><%= @user.username %>'s tools</h3>
+<% @user.tools.each do |tool| %>
+  <%= link_to tool.name, tool_path(tool.id) %>
+<% end %>
+
 <%= link_to "Create A New Tool", new_tool_path %>
