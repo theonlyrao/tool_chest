@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resources :categories, only: [:index]
   end
 
+  namespace :admin do
+    get "tools/new" => "tools#new"
+  end
+
   get "/login" => "sessions#new"
   post "/login" => "sessions#create"
   delete "/logout" => "sessions#destroy"

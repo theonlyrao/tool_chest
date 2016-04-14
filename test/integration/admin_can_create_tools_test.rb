@@ -14,7 +14,7 @@ class AdminCanCreateToolsTest < ActionDispatch::IntegrationTest
     click_on "Log In To Your Account"
 
     click_on "Create A New Tool"
-    assert_equal current_path, new_admin_tool_path
+    assert_equal admin_tools_new_path, current_path
 
     fill_in "tool_name", with: "anvil"
     fill_in "tool_price", with: "99"
