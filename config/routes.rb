@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :index, :create, :show, :edit, :update] do
     resources :tools
+    resources :categories, only: [:index]
   end
 
   get "/login" => "sessions#new"
