@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
   root to: "users#new"
-  resources :tools
 
-  resources :users, only: [:new, :index, :create, :show]
+  resources :users, only: [:new, :index, :create, :show, :edit, :update] do
+    resources :tools
+    resources :categories, only: [:index]
+  end
+
+  namespace :admin do
+    get "tools/new" => "tools#new"
+    get "tools", as: :tools
+    post "tools" => "tools#create"
+  end
 
   get "/login" => "sessions#new"
   post "/login" => "sessions#create"

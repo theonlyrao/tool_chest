@@ -13,7 +13,7 @@ class UserCanCreateToolsTest < ActionDispatch::IntegrationTest
 
     click_on "Create A New Tool"
 
-    assert_equal new_tool_path, current_path
+    assert_equal new_user_tool_path(blacksmith.id), current_path
 
     fill_in "tool_name", with: "anvil"
     fill_in "tool_price", with: "99"
@@ -39,6 +39,6 @@ class UserCanCreateToolsTest < ActionDispatch::IntegrationTest
     assert page.has_content?("water")
 
     click_on "water"
-    assert tool_path(water.id), current_path
+    assert user_tool_path(blacksmith.id, water.id), current_path
   end
 end

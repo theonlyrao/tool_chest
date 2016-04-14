@@ -1,0 +1,9 @@
+<h1>Edit user page</h1>
+
+<%= form_for(@user) do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :password %>
+  <%= f.text_field :password %>
+  <%= f.submit "Update My Account", method: :patch  %>
+<% end %>

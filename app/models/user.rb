@@ -4,8 +4,11 @@ class User < ActiveRecord::Base
 
   has_many :tools
   has_many :sessions
+  has_many :categories, through: :tools
   #
   # def password
   #   @password ||= Password.new(params[:password])
   # end
+
+  enum role: %w(default admin)
 end

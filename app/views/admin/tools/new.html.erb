@@ -1,4 +1,4 @@
-<%= form_for [user, tool] do |f| %>
+<%= form_for [:admin, @tool] do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :price %>
@@ -6,6 +6,7 @@
   <%= f.label :quantity %>
   <%= f.text_field :quantity %>
 
+  <%= f.collection_select(:user_id, User.all, :id, :username) %>
   <%= f.collection_select(:category_id, Category.all, :id, :name) %>
 
   <%= f.submit %>
