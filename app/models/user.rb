@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
   # def password
   #   @password ||= Password.new(params[:password])
   # end
+
+  enum role: %w(default admin)
 end

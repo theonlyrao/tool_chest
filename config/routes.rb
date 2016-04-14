@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "tools/new" => "tools#new"
+    get "tools", as: :tools
+    post "tools" => "tools#create"
   end
 
   get "/login" => "sessions#new"

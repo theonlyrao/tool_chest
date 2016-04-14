@@ -5,8 +5,8 @@
   <%= link_to tool.name, user_tool_path(@user.id, tool.id) %>
 <% end %>
 
-<% if @user.role = 1 %>
-  <%= link_to "Create A New Tool", admin_tools_new_path %>
+<% if @user.role == "admin" %>
+  <%= link_to "Create A New Admin Tool", admin_tools_new_path %>
 <% else %>
   <%= link_to "Create A New Tool", new_user_tool_path(@user.id) %>
 <% end %>

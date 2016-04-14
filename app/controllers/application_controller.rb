@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   before_action :reroute_other_user, only: [:edit, :update, :show]
 
+  def current_admin?
+    current_user && current_user.admin?
+  end
+
   def reroute_other_user
     if params[:id].to_i != session[:user_id]
       @user = User.find(session[:user_id])
@@ -15,7 +19,9 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @user ||= Session.find_by(user_id: @user.id)
+    # byebug
+    # @user ||= Session.find_by(user_id: @user.id)
+    @user ||= User.find(session[:user_id])
   end
 
   def most_recent_tool
